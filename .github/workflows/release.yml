@@ -21,8 +21,12 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: "https://registry.npmjs.org"
       - run: pnpm install --frozen-lockfile
+      # Trusted publishing (OIDC) needs npm >= 11.5.1; runners ship older.
+      # Auth comes from the id-token permission + the Trusted Publisher
+      # config on npmjs.com — no NPM_TOKEN secret, no rotation.
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@latest
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
@@ -30,4 +34,3 @@ jobs:
           version: pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
