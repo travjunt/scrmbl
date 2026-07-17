@@ -1,0 +1,73 @@
+:root {
+  --bg: #08090a;
+  --panel: #0e1012;
+  --panel-2: #121517;
+  --border: #1d2124;
+  --border-bright: #2c3236;
+  --text: #e8eaed;
+  --dim: #9aa1a9;
+  --faint: #5c636b;
+  --accent: #51f0a8;
+  --accent-dim: rgba(81, 240, 168, 0.14);
+  --amber: #ffc857;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo,
+    Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(
+      circle at 50% -20%,
+      rgba(81, 240, 168, 0.06),
+      transparent 60%
+    ),
+    linear-gradient(var(--bg), var(--bg));
+}
+
+::selection {
+  background: var(--accent);
+  color: #05130c;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--mono);
+}
+
+/* Characters mid-scramble get dimmed + tinted — styling hook shipped by the lib. */
+[data-scrmbl-cell][data-glyph] {
+  color: var(--accent);
+  opacity: 0.55;
+}

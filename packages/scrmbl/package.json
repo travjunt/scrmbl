@@ -1,0 +1,90 @@
+{
+  "name": "scrmbl",
+  "version": "0.1.0",
+  "description": "Dependency-free scramble/decode text animation for React, Vue, Svelte, and vanilla JS.",
+  "author": "Travis McCormick <travjunt@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/travjunt/scrmbl#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travjunt/scrmbl.git",
+    "directory": "packages/scrmbl"
+  },
+  "bugs": {
+    "url": "https://github.com/travjunt/scrmbl/issues"
+  },
+  "keywords": [
+    "scramble",
+    "decode",
+    "text",
+    "animation",
+    "typewriter",
+    "glitch",
+    "react",
+    "vue",
+    "svelte",
+    "vanilla"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.mjs",
+      "require": "./dist/react/index.js"
+    },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "import": "./dist/vue/index.mjs",
+      "require": "./dist/vue/index.js"
+    },
+    "./svelte": {
+      "types": "./dist/svelte/index.d.ts",
+      "svelte": "./dist/svelte/index.mjs",
+      "import": "./dist/svelte/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup && node scripts/build-svelte.mjs",
+    "dev": "tsup --watch",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "vue": ">=3.3",
+    "svelte": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "svelte": "^5.16.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vue": "^3.5.13"
+  }
+}

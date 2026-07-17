@@ -1,0 +1,23 @@
+{
+  "name": "scrmbl-monorepo",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build": "pnpm --filter scrmbl build",
+    "dev": "pnpm --filter scrmbl dev & pnpm --filter site dev",
+    "test": "pnpm --filter scrmbl test",
+    "site:dev": "pnpm --filter site dev",
+    "site:build": "pnpm run build && pnpm --filter site build",
+    "example:react": "pnpm --filter react-example dev",
+    "example:vue": "pnpm --filter vue-example dev",
+    "example:svelte": "pnpm --filter svelte-example dev",
+    "example:typescript": "pnpm --filter typescript-example dev",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish && git push --follow-tags",
+    "release:ci": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.10"
+  }
+}
