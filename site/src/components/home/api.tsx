@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { CHARSETS } from "scrmbl";
-import { useScramble } from "scrmbl/react";
 import styles from "./home.module.css";
 
 const ROWS: [string, string, string][] = [
@@ -19,65 +16,25 @@ const ROWS: [string, string, string][] = [
   ["onStart / onComplete", "—", "Animation lifecycle callbacks."],
 ];
 
-function PresetStrip() {
-  const [preset, setPreset] = useState("blocks");
-  const { ref, replay, controller } = useScramble<HTMLDivElement>({
-    charset: preset,
-    duration: 900,
-  });
-
-  const pick = (name: string) => {
-    setPreset(name);
-    // options are read fresh on each call; state lands before the rAF starts
-    queueMicrotask(() => {
-      controller.setOptions({ charset: name });
-      replay();
-    });
-  };
-
-  return (
-    <>
-      <div className={styles.presets}>
-        {Object.keys(CHARSETS).map((name) => (
-          <button
-            key={name}
-            className={styles.tab}
-            aria-pressed={preset === name}
-            onClick={() => pick(name)}
-          >
-            {name}
-          </button>
-        ))}
-      </div>
-      <div className={styles.presetSample} ref={ref}>
-        The quick brown fox decodes 0123456789.
-      </div>
-    </>
-  );
-}
-
 export function Api() {
   return (
-    <div>
-      <table className={styles.apiTable}>
-        <thead>
-          <tr>
-            <th>option</th>
-            <th>default</th>
-            <th>description</th>
+    <table className={styles.apiTable}>
+      <thead>
+        <tr>
+          <th>option</th>
+          <th>default</th>
+          <th>description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {ROWS.map(([name, def, desc]) => (
+          <tr key={name}>
+            <td>{name}</td>
+            <td>{def}</td>
+            <td>{desc}</td>
           </tr>
-        </thead>
-        <tbody>
-          {ROWS.map(([name, def, desc]) => (
-            <tr key={name}>
-              <td>{name}</td>
-              <td>{def}</td>
-              <td>{desc}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <PresetStrip />
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 }

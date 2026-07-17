@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 96px;
+  margin-bottom: clamp(72px, 12vh, 110px);
 }
 
 .wordmark {
@@ -30,6 +30,10 @@
   color: var(--dim);
 }
 
+.navLinks a {
+  transition: color 0.18s var(--ease);
+}
+
 .navLinks a:hover {
   color: var(--text);
 }
@@ -37,15 +41,15 @@
 /* --- hero ------------------------------------------------------------ */
 
 .hero {
-  margin-bottom: 110px;
+  margin-bottom: clamp(88px, 16vh, 140px);
 }
 
 .heroTitle {
   font-family: var(--mono);
   font-weight: 700;
-  font-size: clamp(40px, 9vw, 72px);
+  font-size: clamp(42px, 9.5vw, 84px);
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.04;
   margin-bottom: 20px;
   min-height: 1.1em;
 }
@@ -79,10 +83,15 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px 16px;
+  transition: border-color 0.18s var(--ease), transform 0.12s var(--ease);
 }
 
 .installPill:hover {
   border-color: var(--border-bright);
+}
+
+.installPill:active {
+  transform: translateY(1px);
 }
 
 .installPill .dollar {
@@ -93,42 +102,50 @@
 /* --- sections -------------------------------------------------------- */
 
 .section {
-  margin-bottom: 96px;
+  margin-bottom: clamp(80px, 14vh, 128px);
 }
 
 .sectionTitle {
   font-family: var(--mono);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: clamp(22px, 3.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
-.sectionTitle::before {
-  content: "// ";
-  color: var(--accent);
-}
-
-.sectionNote {
-  font-size: 14px;
+.sectionLede {
+  font-size: 15px;
   color: var(--dim);
-  margin: -8px 0 18px;
-  max-width: 40em;
+  margin-bottom: 24px;
+  max-width: 44em;
 }
 
-/* --- example cards --------------------------------------------------- */
+/* --- example cards (asymmetric 6-col grid) --------------------------- */
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
   gap: 14px;
 }
 
+.span2 {
+  grid-column: span 2;
+}
+
+.span3 {
+  grid-column: span 3;
+}
+
+.span4 {
+  grid-column: span 4;
+}
+
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .span2,
+  .span3,
+  .span4 {
+    grid-column: span 6;
   }
 }
 
@@ -150,6 +167,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
 }
 
 .cardBody {
@@ -166,12 +184,18 @@
   color: var(--faint);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 2px 8px;
+  padding: 4px 10px;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease),
+    transform 0.12s var(--ease);
 }
 
 .replayBtn:hover {
   color: var(--accent);
   border-color: var(--border-bright);
+}
+
+.replayBtn:active {
+  transform: translateY(1px);
 }
 
 .fakeNav {
@@ -184,6 +208,7 @@
 .fakeNav a {
   color: var(--dim);
   width: fit-content;
+  transition: color 0.18s var(--ease);
 }
 
 .fakeNav a:hover {
@@ -208,10 +233,12 @@
 }
 
 .redacted {
-  font-size: 17px;
-  letter-spacing: 0.04em;
+  font-size: 16px;
+  letter-spacing: 0.03em;
   cursor: pointer;
   width: fit-content;
+  text-align: left;
+  padding: 0;
 }
 
 .redactedHint {
@@ -233,6 +260,63 @@
 .termPrompt {
   color: var(--faint);
   user-select: none;
+}
+
+/* --- charset showcase ------------------------------------------------- */
+
+.charsetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.charsetCard {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.18s var(--ease), transform 0.12s var(--ease);
+}
+
+.charsetCard:hover {
+  border-color: var(--border-bright);
+}
+
+.charsetCard:active {
+  transform: translateY(1px);
+}
+
+.charsetHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.charsetName {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.charsetGlyphs {
+  color: var(--faint);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+.charsetSample {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--text);
+  min-height: 1.5em;
 }
 
 /* --- playground ------------------------------------------------------ */
@@ -288,6 +372,7 @@
   border-radius: 8px;
   padding: 7px 10px;
   outline: none;
+  transition: border-color 0.18s var(--ease);
 }
 
 .pgField input[type="text"] {
@@ -312,10 +397,15 @@
   background: var(--accent);
   border-radius: 8px;
   padding: 8px 18px;
+  transition: filter 0.18s var(--ease), transform 0.12s var(--ease);
 }
 
 .runBtn:hover {
   filter: brightness(1.1);
+}
+
+.runBtn:active {
+  transform: translateY(1px);
 }
 
 .checkbox {
@@ -329,7 +419,7 @@
   accent-color: var(--accent);
 }
 
-/* --- tabs (install / usage) ------------------------------------------ */
+/* --- tabs (install) --------------------------------------------------- */
 
 .tabs {
   display: flex;
@@ -348,11 +438,17 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 7px 14px;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease),
+    background 0.18s var(--ease), transform 0.12s var(--ease);
 }
 
 .tab:hover {
   border-color: var(--border-bright);
   color: var(--text);
+}
+
+.tab:active {
+  transform: translateY(1px);
 }
 
 .tab[aria-pressed="true"] {
@@ -361,23 +457,51 @@
   background: var(--accent-dim);
 }
 
-.tab svg {
-  width: 15px;
-  height: 15px;
+/* --- frameworks (all four visible) ------------------------------------ */
+
+.fwGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 14px;
 }
 
-.entrypoint {
+@media (max-width: 860px) {
+  .fwGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fwHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--faint);
-  margin-top: 10px;
+  font-size: 13.5px;
+  margin-bottom: 10px;
 }
 
-.entrypoint code {
+.fwLogo {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.fwLogo svg {
+  width: 17px;
+  height: 17px;
+}
+
+.fwName {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.fwEntry {
+  margin-left: auto;
   color: var(--amber);
+  font-size: 12px;
 }
 
-/* --- code block ------------------------------------------------------ */
+/* --- code block ------------------------------------------------------- */
 
 .codeBlock {
   position: relative;
@@ -405,6 +529,7 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 4px 10px;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
 }
 
 .copyBtn:hover {
@@ -475,21 +600,6 @@
   white-space: nowrap;
 }
 
-.presets {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.presetSample {
-  font-family: var(--mono);
-  font-size: 16px;
-  margin-top: 16px;
-  min-height: 1.4em;
-  color: var(--dim);
-}
-
 /* --- footer ----------------------------------------------------------- */
 
 .footer {
@@ -505,8 +615,21 @@
 
 .footer a {
   color: var(--dim);
+  transition: color 0.18s var(--ease);
 }
 
 .footer a:hover {
   color: var(--accent);
+}
+
+/* --- touch ------------------------------------------------------------ */
+
+@media (pointer: coarse) {
+  .tab,
+  .replayBtn,
+  .copyBtn,
+  .runBtn,
+  .installPill {
+    min-height: 44px;
+  }
 }

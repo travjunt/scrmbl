@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { Scramble, useScramble } from "scrmbl/react";
 import { Api } from "./api";
+import { Charsets } from "./charsets";
 import { Examples } from "./examples";
+import { Frameworks } from "./frameworks";
 import { Install } from "./install";
 import { Playground } from "./playground";
-import { Usage } from "./usage";
 import styles from "./home.module.css";
 
 const GITHUB = "https://github.com/travjunt/scrmbl";
@@ -81,30 +82,51 @@ export function Home() {
       <Hero />
 
       <section className={styles.section} id="examples">
-        <h3 className={styles.sectionTitle}>examples</h3>
+        <h2 className={styles.sectionTitle}>four tricks, one component</h2>
+        <p className={styles.sectionLede}>
+          Hover states, live values, redaction, sequenced reveals — every card is the real
+          library running with different options.
+        </p>
         <Examples />
       </section>
 
+      <section className={styles.section} id="charsets">
+        <h2 className={styles.sectionTitle}>every charset, live</h2>
+        <p className={styles.sectionLede}>
+          All ten built-in glyph pools, same sentence, so you can compare their texture. Click
+          any card to replay it — or pass your own string of characters as{" "}
+          <code>charset</code>.
+        </p>
+        <Charsets />
+      </section>
+
       <section className={styles.section} id="playground">
-        <h3 className={styles.sectionTitle}>playground</h3>
-        <p className={styles.sectionNote}>
-          Every knob maps 1:1 to an option. The snippet below is copy-paste ready.
+        <h2 className={styles.sectionTitle}>turn the knobs</h2>
+        <p className={styles.sectionLede}>
+          Every control maps 1:1 to an option. The snippet underneath is copy-paste ready.
         </p>
         <Playground />
       </section>
 
       <section className={styles.section} id="install">
-        <h3 className={styles.sectionTitle}>install</h3>
+        <h2 className={styles.sectionTitle}>install</h2>
         <Install />
       </section>
 
-      <section className={styles.section} id="usage">
-        <h3 className={styles.sectionTitle}>usage</h3>
-        <Usage />
+      <section className={styles.section} id="frameworks">
+        <h2 className={styles.sectionTitle}>same trick, four runtimes</h2>
+        <p className={styles.sectionLede}>
+          The adapters are thin wrappers over one framework-agnostic controller — every option
+          works identically everywhere.
+        </p>
+        <Frameworks />
       </section>
 
       <section className={styles.section} id="api">
-        <h3 className={styles.sectionTitle}>api</h3>
+        <h2 className={styles.sectionTitle}>the whole api</h2>
+        <p className={styles.sectionLede}>
+          These are props in React, Vue, and Svelte, and an options object in vanilla.
+        </p>
         <Api />
       </section>
 

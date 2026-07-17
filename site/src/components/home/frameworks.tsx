@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { CodeBlock } from "./code-block";
 import { ReactLogo, SvelteLogo, TypeScriptLogo, VueLogo } from "./logos";
 import styles from "./home.module.css";
@@ -19,8 +19,10 @@ const FRAMEWORKS: Framework[] = [
     logo: <ReactLogo />,
     code: `import { Scramble, useScramble } from "scrmbl/react";
 
-// Component: scrambles in on mount, re-scrambles on change
-<Scramble charset="upper" order="random">{title}</Scramble>
+// Component: animates on mount and on change
+<Scramble charset="upper" order="random">
+  {title}
+</Scramble>
 
 // Hook: full control
 const { ref, replay } = useScramble({ charset: "hex" });
@@ -32,12 +34,13 @@ const { ref, replay } = useScramble({ charset: "hex" });
     logo: <TypeScriptLogo />,
     code: `import { scramble } from "scrmbl";
 
-// Scramble in whatever the element already says
-const ctrl = scramble(document.querySelector("h1")!, {
-  charset: "symbols",
-});
+// Scramble in whatever the element says
+const ctrl = scramble(
+  document.querySelector("h1")!,
+  { charset: "symbols" }
+);
 
-// Animate to new text whenever you like
+// Animate to new text whenever
 ctrl.update("New headline");`,
   },
   {
@@ -49,7 +52,11 @@ import { Scramble } from "scrmbl/vue";
 </script>
 
 <template>
-  <Scramble :text="title" charset="upper" order="random" />
+  <Scramble
+    :text="title"
+    charset="upper"
+    order="random"
+  />
 </template>`,
   },
   {
@@ -61,32 +68,27 @@ import { Scramble } from "scrmbl/vue";
   let { title } = $props();
 </script>
 
-<Scramble text={title} charset="upper" order="random" />`,
+<Scramble
+  text={title}
+  charset="upper"
+  order="random"
+/>`,
   },
 ];
 
-export function Usage() {
-  const [index, setIndex] = useState(0);
-  const active = FRAMEWORKS[index];
+export function Frameworks() {
   return (
-    <div>
-      <div className={styles.tabs} role="tablist" aria-label="Framework">
-        {FRAMEWORKS.map((f, i) => (
-          <button
-            key={f.name}
-            className={styles.tab}
-            aria-pressed={index === i}
-            onClick={() => setIndex(i)}
-          >
-            {f.logo}
-            {f.name}
-          </button>
-        ))}
-      </div>
-      <CodeBlock code={active.code} />
-      <div className={styles.entrypoint}>
-        entrypoint: <code>{active.entry}</code>
-      </div>
+    <div className={styles.fwGrid}>
+      {FRAMEWORKS.map((f) => (
+        <div key={f.name}>
+          <div className={styles.fwHead}>
+            <span className={styles.fwLogo}>{f.logo}</span>
+            <span className={styles.fwName}>{f.name}</span>
+            <code className={styles.fwEntry}>{f.entry}</code>
+          </div>
+          <CodeBlock code={f.code} />
+        </div>
+      ))}
     </div>
   );
 }

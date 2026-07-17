@@ -19,7 +19,7 @@ function HoverLink({ children }: { children: string }) {
 
 function HoverNavCard() {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles.span3}`}>
       <div className={styles.cardLabel}>
         <span>hover states</span>
         <span>charset=&quot;upper&quot;</span>
@@ -50,7 +50,7 @@ function LiveStatCard() {
   })}`;
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles.span3}`}>
       <div className={styles.cardLabel}>
         <span>live values</span>
         <span>scrambleAll={"{false}"}</span>
@@ -73,7 +73,7 @@ function RedactedCard() {
   const [revealed, setRevealed] = useState(false);
   const text = revealed ? "4242-TRVS-8815-SCRM" : "████-████-████-████";
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles.span2}`}>
       <div className={styles.cardLabel}>
         <span>redacted</span>
         <span>charset=&quot;blocks&quot;</span>
@@ -122,7 +122,7 @@ function TerminalCard() {
   }, []);
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles.span4}`}>
       <div className={styles.cardLabel}>
         <span>sequenced</span>
         <button className={styles.replayBtn} onClick={() => run(0)}>
