@@ -317,6 +317,10 @@
   font-size: 15px;
   color: var(--text);
   min-height: 1.5em;
+  /* Wide glyph pools (katakana, blocks) must never wrap and reflow the page:
+     one line, clipped if a pool briefly overflows mid-scramble. */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* --- playground ------------------------------------------------------ */

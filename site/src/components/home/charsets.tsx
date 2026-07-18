@@ -5,7 +5,9 @@ import { CHARSETS } from "scrmbl";
 import { useScramble } from "scrmbl/react";
 import styles from "./home.module.css";
 
-const SAMPLE = "THE QUICK FOX 0123";
+// Short enough that even all-full-width glyphs (katakana ≈ 2× Latin width)
+// fit the narrowest card without wrapping — no layout shift mid-scramble.
+const SAMPLE = "DECODE 0123";
 const CYCLE_MS = 4600;
 const PHASE_MS = 340;
 

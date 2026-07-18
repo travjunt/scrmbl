@@ -93,7 +93,7 @@ export function Home() {
       <section className={styles.section} id="charsets">
         <h2 className={styles.sectionTitle}>every charset, live</h2>
         <p className={styles.sectionLede}>
-          All ten built-in glyph pools, same sentence, so you can compare their texture. Click
+          All ten built-in glyph pools, same sample, so you can compare their texture. Click
           any card to replay it — or pass your own string of characters as{" "}
           <code>charset</code>.
         </p>
