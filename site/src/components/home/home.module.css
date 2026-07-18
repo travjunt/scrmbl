@@ -461,48 +461,22 @@
   background: var(--accent-dim);
 }
 
-/* --- frameworks (all four visible) ------------------------------------ */
-
-.fwGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px 14px;
+.tab svg {
+  width: 15px;
+  height: 15px;
 }
 
-@media (max-width: 860px) {
-  .fwGrid {
-    grid-template-columns: 1fr;
-  }
-}
+/* --- frameworks -------------------------------------------------------- */
 
-.fwHead {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.entrypoint {
   font-family: var(--mono);
-  font-size: 13.5px;
-  margin-bottom: 10px;
-}
-
-.fwLogo {
-  display: inline-flex;
-  color: var(--accent);
-}
-
-.fwLogo svg {
-  width: 17px;
-  height: 17px;
-}
-
-.fwName {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.fwEntry {
-  margin-left: auto;
-  color: var(--amber);
   font-size: 12px;
+  color: var(--faint);
+  margin-top: 10px;
+}
+
+.entrypoint code {
+  color: var(--amber);
 }
 
 /* --- code block ------------------------------------------------------- */
@@ -516,7 +490,8 @@
 }
 
 .codeBlock pre {
-  padding: 18px 20px;
+  /* extra right padding keeps the first line clear of the copy button */
+  padding: 18px 84px 18px 20px;
   font-size: 13.5px;
   line-height: 1.7;
   tab-size: 2;

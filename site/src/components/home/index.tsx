@@ -145,10 +145,6 @@ export function Home() {
             issues
           </a>
         </span>
-        <span>
-          single-page micro-library format with a nod to torph &amp; number-flow — different
-          trick, different engine.
-        </span>
       </footer>
     </div>
   );
